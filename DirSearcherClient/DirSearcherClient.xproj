@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>6b8f9387-d39b-439c-849d-bb5a69acf2dd</ProjectGuid>
-    <RootNamespace>active_directory_dotnet_deviceprofile</RootNamespace>
+    <ProjectGuid>cf4aa24b-620d-4bb0-a89b-830e8b304b3a</ProjectGuid>
+    <RootNamespace>DirSearcherClient</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>

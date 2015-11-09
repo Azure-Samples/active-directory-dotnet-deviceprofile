@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "active_directory_dotnet_deviceprofile": {
-      "commandName": "active_directory_dotnet_deviceprofile",
-      "sdkVersion": "dnx-coreclr-win-x86.1.0.0-beta8"
-    }
-  }
-}
