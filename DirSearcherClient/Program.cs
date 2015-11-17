@@ -31,7 +31,7 @@ namespace DirSearcherClient
             // main command cycle
             while (!commandString.Equals("Exit"))
             {
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
                 Console.WriteLine("Enter command (search | clear | printcache | exit | help) >");
                 commandString = Console.ReadLine();
 
@@ -203,7 +203,7 @@ namespace DirSearcherClient
             try
             {
                 DeviceCodeResult codeResult = ctx.AcquireDeviceCodeAsync(resource, clientId).Result;
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
                 Console.WriteLine("You need to sign in.");
                 Console.WriteLine("Message: " + codeResult.Message + "\n");
                 result = ctx.AcquireTokenByDeviceCodeAsync(codeResult).Result;
