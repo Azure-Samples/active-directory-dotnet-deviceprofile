@@ -70,14 +70,7 @@ Launch the app by entering the following command:
 
 As soon as you start the sample, you will be presented with the following prompt.
 
-> ***********************************************************
-> *             Directory Searcher Text Client              *
-> *                                                         *
-> *             Type commands to search users               *
-> *                                                         *
-> ***********************************************************
-> 
-> Enter command (search | clear | printcache | exit | help) >
+>  Enter command (search | clear | printcache | exit | help) >
 
 To see the device code authentication experience in action, enter a command for searching a user in one of your tenants. In my case, I want to search a user with alias `mario` in my tenant `developertenant.onmicrosoft.com`. Hence, the command I'll enter will be:
 
@@ -91,15 +84,15 @@ The app will respond with the following prompt.
 Open a browser on any device (common choices are the computer on which you are running the sample, or even your smartphone) and navigate to [https://aka.ms/devicelogin](https://aka.ms/devicelogin). Once there, type in the code provided by the app (in this sample, I am typing `B7D3SVXHV`) and hit enter.
 The web page will proceed to prompt you for authentication: please authenticate as a user (native or guest) in the tenant that you specified in the search command. Note that, thanks t the fact that you are using an external browser or a different, browser capable device, you can authenticate without restrictions: for example, if your tenant requires you to authenticate using MFA, you are able to do so. That would not have been possible if you would have had to drive the authentication operations exclusively in the console
 Once you successfully authenticate, go back to the console app. You'll see that the app has now access to the token it needs to query the Directory Graph API. In my case, a mario does exist in my tenant: hence I'll receive the following result.
+
 > Users found.
-> -----
 > displayName: Mario Rossi
 > givenName: Mario
 > surname: Rossi
 > userPrincipalName: mario@developertenant.onmicrosoft.com
 > telephoneNumbe: Not Listed.
 > Enter command (search | clear | printcache | exit | help) >
-> 
+> > 
 
 As a next step, you can search for other users. If you search for users in the same tenant, you'll be able to perform the query without extra prompts. If you indicate a new tenant, you will be prompted again. Note that, if your authenticated user is provisioned in the new tenant and your sample app already received consent in that tenant, you'll be able to get tokens for the new tenant without extra prompts as well.   
 
