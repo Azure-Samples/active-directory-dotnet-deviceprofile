@@ -4,7 +4,7 @@ platforms: dotnet, netcore, osx, linux
 author: vibronet
 ---
 
-Invoking an API protected by Azure AD from a text-only device 
+Invoking an API protected by Azure AD from a text-only device
 
 This sample demonstrates how to leverage ADAL .NET to authenticate user calls to a web API (in this case, the directory Graph) from apps that do not have the capability of offering an interactive authentication experience.
 The sample uses the OAuth2 device profile flow similar to the one described [here](https://developers.google.com/identity/protocols/OAuth2ForDevices?hl=en). The app is build entirely on .NET Core, hence it can be ran as-is on Windows (including Nano Server), OSX and Linux machines. To emulate a device not capable of showing UX, the sample is packaged as a console application.
@@ -20,7 +20,7 @@ The application obtains tokens through a two steps process especially designed f
 The code for handling the token acquisition process is extremely simple, as it boils down to one call for obtaining the code to display to the user (via `AcquireDeviceCodeAsync`) and one call to poll the service to retrieve the tokens when available (via `AcquireTokenByDeviceCodeAsync`). You can find both calls in the sample in the static method `GetTokenViaCode`, from the app root class `Program` in program.cs.
 ## How To Run The Sample
 
-To run this entire sample you will need:
+To run this sample you will need:
 - An Internet connection
 - A Windows machine (necessary if you want to run the app on Windows)
 - An OS X machine (necessary if you want to run the app on OSX)
@@ -32,3 +32,23 @@ To run this entire sample you will need:
 Every Azure subscription has an associated Azure Active Directory tenant.  If you don't already have an Azure subscription, you can get a free subscription by signing up at [https://azure.microsoft.com](https://azure.microsoft.com).  All of the Azure AD features used by this sample are available free of charge.
 
 ### Step 1: Setup DNX
+
+The ASP.NET documentation pages provide step by step instructions for installing ASP.NET 5 and DNX (the .NET Execution Environment) for your platform of choice.
+#### Windows
+If you are targeting Windows, see https://docs.asp.net/en/latest/getting-started/installing-on-windows.html
+(this readme assumes you will follow the instructions for installing ASP.NET 5 with Visual Studio, but you can also go for the standalone option).
+#### Mac OS X
+If you are targeting Mac OS X, please follow the instructions at https://docs.asp.net/en/latest/getting-started/installing-on-mac.html
+#### Linux
+If you are targeting Linux, please follow the instructions at https://docs.asp.net/en/latest/getting-started/installing-on-linux.html. This sample has been tested on Ubuntu.
+
+### Step 2: Run the sample
+
+Clone the repo to your machine.
+#### Windows
+I.
+#### Mac OS X
+I
+#### Linux
+I
+#### All platforms
