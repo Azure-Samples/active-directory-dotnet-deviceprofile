@@ -42,7 +42,6 @@ namespace WeatherReporter
 
             this.statusValue.Text = "Token received, connecting to PBI...";
 
-            this.resetButton.Visibility = Windows.UI.Xaml.Visibility.Visible;
             this.passcode.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
             await pbiClient.ConnectAsync();
@@ -61,9 +60,18 @@ namespace WeatherReporter
             dataProvider = new SimulatedWeatherDataProvider();
 #endif
 
+            this.resetButton.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
             await GenerateWeatherData();
 
             this.statusValue.Text = "All data pushed to Power BI";
+        }
+
+        // PowerBI only supports UTC time, so we need to present current time as UTC
+        private static DateTime ToUTCTime(DateTime local)
+        {
+            var diff = local - local.ToUniversalTime();
+            return local + diff;
         }
 
         private async Task GenerateWeatherData()
@@ -79,7 +87,7 @@ namespace WeatherReporter
                     {
                         Humidity = dataProvider.GetHumidity(),
                         Temperature = dataProvider.GetTemperature(),
-                        Time = DateTime.Now
+                        Time = ToUTCTime(DateTime.Now)
                     }
                 };
 
