@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "description": "DirSearcherClient Console Application",
   "authors": [ "Vittorio" ],
@@ -6,10 +6,10 @@
   "projectUrl": "",
   "licenseUrl": "",
 
-  "dependencies": {
-    "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.6.210231457-alpha",
-    "Newtonsoft.Json": "8.0.1-beta1"
-  },
+    "dependencies": {
+        "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.9.302261508-alpha",
+        "Newtonsoft.Json": "8.0.1-beta1"
+    },
 
   "commands": {
     "DirSearcherClient": "DirSearcherClient"

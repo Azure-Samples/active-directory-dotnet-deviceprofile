@@ -30,7 +30,7 @@
           "lib/dotnet/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.6.210231457-alpha": {
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.9.302261508-alpha": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.0",
@@ -537,7 +537,7 @@
           "lib/dotnet/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.6.210231457-alpha": {
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.9.302261508-alpha": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.0",
@@ -1258,7 +1258,7 @@
           "lib/dotnet/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.6.210231457-alpha": {
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/3.9.302261508-alpha": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.0.0",
@@ -1956,7 +1956,7 @@
     "Microsoft.CSharp/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "GGOOJF47WzXZoka0JHCToQxzSguIy1UeXZywUjA1NPqvKAWVwbSbZ2VxyeIL3jyTV1BHEbBX8FPL6vweUON2aw==",
+      "sha512": "I1jsSsyK89VfNebrnx2eiBD5YT6zp+DcX2v6AxZ/IosS38QYmA9YKVmssMd5yhRkXwr1f8MfgZTxF1Cli90JEQ==",
       "files": [
         "lib/dotnet/de/Microsoft.CSharp.xml",
         "lib/dotnet/es/Microsoft.CSharp.xml",
@@ -1994,9 +1994,9 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Microsoft.IdentityModel.Clients.ActiveDirectory/3.6.210231457-alpha": {
+    "Microsoft.IdentityModel.Clients.ActiveDirectory/3.9.302261508-alpha": {
       "type": "package",
-      "sha512": "OZ/ZszoWOYYQSKLqWYVM8z0fO4UMivy5eNCPvlTppTy0/og83njLR3IYSat/nmWcc69IkssMJDj8wOtPBG4sGA==",
+      "sha512": "oKAsfeZpVysUiOBuo1pTOfzXjQwRTSLjrXwthqtaJZo5S68felSK4tDUZCppZ1DTfXvS8kaEXv7vIS3N4O0dqQ==",
       "files": [
         "lib/dnxcore50/Microsoft.IdentityModel.Clients.ActiveDirectory.dll",
         "lib/dnxcore50/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll",
@@ -2020,8 +2020,8 @@
         "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll",
         "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.XML",
         "lib/Xamarin.iOS10/Microsoft.IdentityModel.Clients.ActiveDirectory.XML",
-        "Microsoft.IdentityModel.Clients.ActiveDirectory.3.6.210231457-alpha.nupkg",
-        "Microsoft.IdentityModel.Clients.ActiveDirectory.3.6.210231457-alpha.nupkg.sha512",
+        "Microsoft.IdentityModel.Clients.ActiveDirectory.3.9.302261508-alpha.nupkg",
+        "Microsoft.IdentityModel.Clients.ActiveDirectory.3.9.302261508-alpha.nupkg.sha512",
         "Microsoft.IdentityModel.Clients.ActiveDirectory.nuspec"
       ]
     },
@@ -2104,7 +2104,7 @@
     "runtime.win7.System.Net.Http/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "PsM0ItHJ6ahnDzXPXJeCQpKwL/VOQ4GjFiI4Y+HCkHZlaTSwJayoLuroDU545G+cvEtmbMinLNDqG5HdKQExMw==",
+      "sha512": "vRSQXNQdlzx+0+6BTI9ExF37+Eo2DkuRTxTAb+qFNF34soqS3Lgt8d5gr097D/zDkSdP05ssSbSEaiSMv51K/Q==",
       "files": [
         "ref/dotnet/_._",
         "runtime.win7.System.Net.Http.4.0.1-beta-23409.nupkg",
@@ -2623,7 +2623,7 @@
     "System.Net.Http/4.0.1-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "h9CPYbGzH/9faYD24qLNBY+/dH8F67AktW3UvrEJR7Xan3bzXKJd5Po/3+qRswNsRUH2P/HBSK5fZE3CKVmhxg==",
+      "sha512": "FzfaQV17DmYxTH2xcpF4PfeCVcEmDf1MvE956I4/FDxiPFKaePXLv+dDbciuMl7C3bhqeBiC7ws0/t6AsiAiXA==",
       "files": [
         "lib/net45/_._",
         "lib/win8/_._",
@@ -3234,7 +3234,7 @@
     "System.Security.Cryptography.Algorithms/4.0.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "zgVLclf2VffRufQjWyRvvTTMk2yKmm2acQIOxZbiLBrmRwcDStWz722Efkn5BBzvuvwmBvoride8ArlOyFqXVA==",
+      "sha512": "DdCXdjldFGCojJdtHoVNFbilievhuyNzHCP45AqFeyUl/eJWwrwiJ+5e+Ex4wz586Zouou8FLI4VqZHo1yF3nA==",
       "files": [
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
@@ -3256,7 +3256,7 @@
     "System.Security.Cryptography.Encoding/4.0.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "uyvudvGilbcfron6qDxGclW5x4SIGwRqcqchPJhpBBUOn/bUd+W+uaAt3PPqSFI3vixLsh9jne13xEdJN6eRuA==",
+      "sha512": "9v+nwvi6noNn7XEjk+zTd+sk7lfi2wBpI4PCWTsH4WTgi/BmXngONfGjxjlFz9thkOAXXueq7p+LnHbuTli6aw==",
       "files": [
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
@@ -3300,7 +3300,7 @@
     "System.Security.Cryptography.X509Certificates/4.0.0-beta-23409": {
       "type": "package",
       "serviceable": true,
-      "sha512": "DcG1hXh7WBuctRk9Js4ZhZixJaFEdtgUeRRlRIvAzrUxR6ov5VFLqOYo2bi+Nepuc/0t0uXQBiJ02kd5dXHclQ==",
+      "sha512": "C2megOy1S2njgUF1IqHsDgFaCrRG6RrbJ8SsaTLZZDls2VNK8iKGADQoo+wlpt1WmAFZHwteabjKnw36J6airg==",
       "files": [
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
@@ -3799,7 +3799,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.IdentityModel.Clients.ActiveDirectory >= 3.6.210231457-alpha",
+      "Microsoft.IdentityModel.Clients.ActiveDirectory >= 3.9.302261508-alpha",
       "Newtonsoft.Json >= 8.0.1-beta1"
     ],
     "DNXCore,Version=v5.0": [
