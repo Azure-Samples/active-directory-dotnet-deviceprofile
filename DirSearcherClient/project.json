@@ -7,7 +7,7 @@
   "licenseUrl": "",
 
     "dependencies": {
-        "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.9.302261508-alpha",
+        "Microsoft.IdentityModel.Clients.ActiveDirectory": "3.9.304210845",
         "Newtonsoft.Json": "8.0.1-beta1"
     },
 
