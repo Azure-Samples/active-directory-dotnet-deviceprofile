@@ -10,6 +10,8 @@ This sample demonstrates how to leverage ADAL .NET to authenticate user calls to
 The sample uses the OAuth2 device profile flow similar to the one described [here](https://developers.google.com/identity/protocols/OAuth2ForDevices?hl=en). The app is build entirely on .NET Core, hence it can be ran as-is on Windows (including Nano Server), OSX and Linux machines. To emulate a device not capable of showing UX, the sample is packaged as a console application.
 The application signs users in with Azure Active Directory (Azure AD), using the Active Directory Authentication Library (ADAL) to obtain a JWT access token through the OAuth 2.0 protocol.  The access token is sent to Azure AD's Graph API to obtain information about other users in their organization.
 
+> Looking for previous versions of this code sample? Check out the tags on the [releases](../../releases) GitHub page.
+
 ### About The Sample
 If you would like to get started immediately, skip this section and jump to *How To Run The Sample*.
 
