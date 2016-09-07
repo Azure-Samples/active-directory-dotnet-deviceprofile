@@ -105,17 +105,15 @@ Below you'll find instructions to provision the sample in your own tenant, so th
 
 #### Register the app in your tenant
 
-1. Sign in to the Azure management portal.
-2. Click on Active Directory in the left hand nav.
-3. Click the directory tenant where you wish to register the sample application.
-4. Click the Applications tab.
-5. In the drawer, click Add.
-6. Click "Add an application my organization is developing".
-7. Enter a friendly name for the application, for example "DirSearcherClient", select "Native Client Application", and click next.
-8. Enter a Redirect Uri value of your choosing and of form http://MyDirSearcherApp. However note that for the flow in this sample, it will not be used.
-9. While still in the Azure portal, click the Configure tab of your application.
-10. Find the Client ID value and copy it aside, you will need this later when configuring your application.
-11. In the Permissions to Other Applications configuration section, ensure that "Access your organization's directory" and "Enable sign-on and read user's profiles" are selected under "Delegated permissions" for Azure Active Directory. Save the configuration.
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+2. On the top bar, click on your account and under the **Directory** list, choose the Active Directory tenant where you wish to register your application.
+2. Click on **More Services** in the left hand nav, and choose **Azure Active Directory**.
+3. Click on **Registered Applications** and choose **Add**.
+4. Enter a friendly name for the application, for example 'DirSearcherClient' and select 'Native' as the Application Type. Enter a Redirect Uri value of your choosing and of the form `http://MyDirSearcherApp`. However note that for the flow in this sample, it will not be used. Click on **Create** to create the application.
+5. While still in the Azure portal, choose your application, click on **Settings** and choose **Properties**.
+6. Find the Application ID value and copy it to the clipboard.
+7. Configure Permissions for your application - in the Settings menu, choose the 'Required permissions' section, click on **Add**, then **Select an API**, and select 'Microsoft Graph' (this is the Graph API). Then, click on  **Select Permissions** and select 'Sign in and read user profile' and 'Read directory data'. 
 
 
 #### Update the sample code to point to the app entry in your tenant
