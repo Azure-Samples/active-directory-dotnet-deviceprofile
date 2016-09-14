@@ -109,7 +109,7 @@ Below you'll find instructions to provision the sample in your own tenant, so th
 1. Sign in to the [Azure portal](https://portal.azure.com).
 2. On the top bar, click on your account and under the **Directory** list, choose the Active Directory tenant where you wish to register your application.
 2. Click on **More Services** in the left hand nav, and choose **Azure Active Directory**.
-3. Click on **Registered Applications** and choose **Add**.
+3. Click on **App registrations** and choose **Add**.
 4. Enter a friendly name for the application, for example 'DirSearcherClient' and select 'Native' as the Application Type. Enter a Redirect Uri value of your choosing and of the form `http://MyDirSearcherApp`. However note that for the flow in this sample, it will not be used. Click on **Create** to create the application.
 5. While still in the Azure portal, choose your application, click on **Settings** and choose **Properties**.
 6. Find the Application ID value and copy it to the clipboard.
