@@ -32,9 +32,9 @@ To run this sample you will need:
 - An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, please see [How to get an Azure AD tenant](https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/) 
 - A user account in your Azure AD tenant. This sample will not work with a Microsoft account, so if you signed in to the Azure portal with a Microsoft account and have never created a user account in your directory before, you need to do that now.
 
-### Step 1: Setup DNX
+### Step 1: Setup .NET core
 
-The ASP.NET documentation pages provide step by step instructions for installing ASP.NET 5 and DNX (the .NET Execution Environment) for your platform of choice.
+The ASP.NET documentation pages provide step by step instructions for installing .NET Core (the .NET Execution Environment) for your platform of choice.
 #### Windows
 If you are targeting Windows, see [this document](https://docs.asp.net/en/latest/getting-started/installing-on-windows.html).
 (this readme assumes you will follow the instructions for installing ASP.NET 5 with Visual Studio, but you can also go for the standalone option).
