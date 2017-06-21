@@ -49,7 +49,6 @@ namespace DirSearcherClient
                     case "EXIT":
                         Console.WriteLine("Bye!");
                         return;
-                        break;
                     default:
                         if (commandString.ToUpper().StartsWith("SEARCH") && commandString.Split(' ').Count() > 1)
                         {
@@ -101,22 +100,25 @@ namespace DirSearcherClient
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error on search");
                 }
-                Console.ForegroundColor = ConsoleColor.Green;
-                if (jResult.Count == 0)
-                {
-                    Console.WriteLine("No user with alias {0} found. (tenantID: {1})", searchterm, ar.TenantId);
-                }
                 else
                 {
-                    Console.WriteLine("Users found.");
-                    foreach (JObject result in jResult["value"])
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    if (jResult.Count == 0)
                     {
-                        Console.WriteLine("-----");
-                        Console.WriteLine("displayName: {0}", (string)result["displayName"]);
-                        Console.WriteLine("givenName: {0}", (string)result["givenName"]);
-                        Console.WriteLine("surname: {0}", (string)result["surname"]);
-                        Console.WriteLine("userPrincipalName: {0}", (string)result["userPrincipalName"]);
-                        Console.WriteLine("telephoneNumbe: {0}", (string)result["telephoneNumber"] == null ? "Not Listed." : (string)result["telephoneNumber"]);
+                        Console.WriteLine("No user with alias {0} found. (tenantID: {1})", searchterm, ar.TenantId);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Users found.");
+                        foreach (JObject result in jResult["value"])
+                        {
+                            Console.WriteLine("-----");
+                            Console.WriteLine("displayName: {0}", (string)result["displayName"]);
+                            Console.WriteLine("givenName: {0}", (string)result["givenName"]);
+                            Console.WriteLine("surname: {0}", (string)result["surname"]);
+                            Console.WriteLine("userPrincipalName: {0}", (string)result["userPrincipalName"]);
+                            Console.WriteLine("telephoneNumbe: {0}", (string)result["telephoneNumber"] == null ? "Not Listed." : (string)result["telephoneNumber"]);
+                        }
                     }
                 }
             }
