@@ -1,7 +1,7 @@
 ---
 services: active-directory
 platforms: dotnet, netcore, osx, linux
-author: vibronet
+author: jmprieur
 ---
 
 # Invoking an API protected by Azure AD from a text-only device
