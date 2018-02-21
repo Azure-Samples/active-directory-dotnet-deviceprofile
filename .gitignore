@@ -212,3 +212,4 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+/.vs/active-directory-dotnet-deviceprofile/v15/Server/sqlite3
