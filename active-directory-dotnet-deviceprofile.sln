@@ -1,17 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DirSearcherClient", "DirSearcherClient\DirSearcherClient.xproj", "{CF4AA24B-620D-4BB0-A89B-830E8B304B3A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AFDDF9CA-2DE4-4DE6-BC6A-8C7F5B14A24B}"
 	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-		NuGet.Config = NuGet.Config
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8B25F3AF-5F7F-44D5-9454-E1FC6558B8DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirSearcherClient", "DirSearcherClient\DirSearcherClient.csproj", "{87DA1899-AAE1-486A-BD99-002CEAB30AD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,15 +18,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CF4AA24B-620D-4BB0-A89B-830E8B304B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF4AA24B-620D-4BB0-A89B-830E8B304B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF4AA24B-620D-4BB0-A89B-830E8B304B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF4AA24B-620D-4BB0-A89B-830E8B304B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DA1899-AAE1-486A-BD99-002CEAB30AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DA1899-AAE1-486A-BD99-002CEAB30AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DA1899-AAE1-486A-BD99-002CEAB30AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DA1899-AAE1-486A-BD99-002CEAB30AD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CF4AA24B-620D-4BB0-A89B-830E8B304B3A} = {8B25F3AF-5F7F-44D5-9454-E1FC6558B8DA}
+		{87DA1899-AAE1-486A-BD99-002CEAB30AD9} = {8B25F3AF-5F7F-44D5-9454-E1FC6558B8DA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5199C9BC-F141-4B82-AD35-49B4B67A79E8}
 	EndGlobalSection
 EndGlobal

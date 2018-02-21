@@ -16,10 +16,14 @@ namespace DirSearcherClient
         //public const string clientId = "04b07795-8ddb-461a-bbee-02f9e1bf7b46";
         public const string resource = "00000002-0000-0000-c000-000000000000";
         public const string clientId = "b78054de-7478-45a6-be1c-09f696a91d64";
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
             string commandString = string.Empty;
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            // you might want to enable logging (by setting this boolean to true)
+            LoggerCallbackHandler.UseDefaultLogging = false;
+
             Console.WriteLine("***********************************************************");
             Console.WriteLine("*             Directory Searcher Text Client              *");
             Console.WriteLine("*                                                         *");
@@ -32,7 +36,7 @@ namespace DirSearcherClient
             while (!commandString.Equals("Exit"))
             {
                 Console.ResetColor();
-                Console.WriteLine("Enter command (search | clear | printcache | exit | help) >");
+                Console.WriteLine("Enter command (search upn | clear | printcache | exit | help) >");
                 commandString = Console.ReadLine();
 
                 switch (commandString.ToUpper())
