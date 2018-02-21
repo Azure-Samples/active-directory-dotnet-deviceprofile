@@ -1,13 +1,10 @@
 ﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DirSearcherClient
 {
@@ -21,7 +18,7 @@ namespace DirSearcherClient
             string commandString = string.Empty;
             Console.ForegroundColor = ConsoleColor.White;
 
-            // you might want to enable logging (by setting this boolean to true)
+            // You might want to enable logging (by setting this boolean to true)
             LoggerCallbackHandler.UseDefaultLogging = false;
 
             Console.WriteLine("***********************************************************");
@@ -36,7 +33,7 @@ namespace DirSearcherClient
             while (!commandString.Equals("Exit"))
             {
                 Console.ResetColor();
-                Console.WriteLine("Enter command (search upn | clear | printcache | exit | help) >");
+                Console.WriteLine("Enter command (search <upn> <tenantname> | clear | printcache | exit | help) >");
                 commandString = Console.ReadLine();
 
                 switch (commandString.ToUpper())

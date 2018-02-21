@@ -15,7 +15,7 @@ The application signs users in with Azure Active Directory (Azure AD), using the
 ### About The Sample
 If you would like to get started immediately, skip this section and jump to *How To Run The Sample*.
 
-This sample solution is a command line utility that can be used for looking up basic information for users in Azure AD tenants. The project targets .NET Core, hence it can run wherever DNX can run: it has been tested on Windows, OSX and Ubuntu Linux.
+This sample solution is a command line utility that can be used for looking up basic information for users in Azure AD tenants. The project targets .NET Core: it has been tested on Windows, OSX and Ubuntu Linux.
 
 The application obtains tokens through a two steps process especially designed for devices and operating systems that cannot display any UX. The idea is that whenever a user authentication is required, the command line app asks the user to use another device (such as an internet-connected smartphone) to navigate to http://aka.ms/devicelogin, where the user will be prompted to enter the code so obtained. That done, the web page will lead the user through a normal authentication experience, including consent prompts and multi factor authentication if necessary. Upon successful authentication, the command line app will receive the required tokens through a back channel and will use it to perform the web API calls it needs.     
 
@@ -116,7 +116,7 @@ Below you'll find instructions to provision the sample in your own tenant, so th
 
 #### Update the sample code to point to the app entry in your tenant
 
-1.Open the solution in Visual Studio 2015.
-2.Open the Program.cs file in the DirSearcherClient project.
-3.Find the clientId member variable and replace its value with the Client Id you copied from the Azure portal.
+1. Open the solution in Visual Studio.
+2. Open the Program.cs file in the DirSearcherClient project.
+3. Find the clientId member variable and replace its value with the Client Id you copied from the Azure portal.
 
