@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace DirSearcherClient
 {
@@ -54,9 +55,9 @@ namespace DirSearcherClient
                         {
                             string[] localArgs = commandString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                             if (localArgs.Count() > 2)
-                                Search(localArgs[1], localArgs[2]);
+                                Search(localArgs[1], localArgs[2]).Wait();
                             else
-                                Search(localArgs[1], null);
+                                Search(localArgs[1], null).Wait();
                         }
                         else
                         {
@@ -67,15 +68,15 @@ namespace DirSearcherClient
                 }
             }
         }
-        static void Search(string searchterm, string tenant)
+        static async Task Search(string searchterm, string tenant)
         {
-            AuthenticationResult ar = GetToken(tenant);
+            AuthenticationResult ar = await GetToken(tenant);
             if (ar != null)
             {
                 JObject jResult = null;
                 try
                 {
-                    string graphRequest = $"https://graph.microsoft.com/v1.0/users?$filter=mailNickname eq '{searchterm}'";
+                    string graphRequest = $"{resource}/v1.0/users?$filter=mailNickname eq '{searchterm}'";
                     HttpClient client = new HttpClient();
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, graphRequest);
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", ar.AccessToken);
@@ -159,7 +160,7 @@ namespace DirSearcherClient
             Console.WriteLine("");
         }
 
-        static AuthenticationResult GetToken(string tenant)
+        static async Task<AuthenticationResult> GetToken(string tenant)
         {
             AuthenticationContext ctx = null;
             if (tenant != null)
@@ -176,17 +177,13 @@ namespace DirSearcherClient
             AuthenticationResult result = null;
             try
             {
-                result = ctx.AcquireTokenSilentAsync(resource, clientId).Result;
-            }
-            catch(AggregateException ex) when (ex.InnerException is AdalSilentTokenAcquisitionException)
-            {
-                result = GetTokenViaCode(ctx);
+                result = await ctx.AcquireTokenSilentAsync(resource, clientId);
             }
             catch (AdalSilentTokenAcquisitionException)
             {
-                result = GetTokenViaCode(ctx);
+                result = await GetTokenViaCode(ctx);
             }
-            catch (Exception exc)
+            catch (AdalException exc)
             {
                 PrintError(exc);
             }
@@ -201,16 +198,16 @@ namespace DirSearcherClient
             Console.WriteLine("Message: " + exc.Message + "\n");
         }
 
-        static AuthenticationResult GetTokenViaCode(AuthenticationContext ctx)
+        static async Task<AuthenticationResult> GetTokenViaCode(AuthenticationContext ctx)
         {
             AuthenticationResult result = null;
             try
             {
-                DeviceCodeResult codeResult = ctx.AcquireDeviceCodeAsync(resource, clientId).Result;
+                DeviceCodeResult codeResult = await ctx.AcquireDeviceCodeAsync(resource, clientId);
                 Console.ResetColor();
                 Console.WriteLine("You need to sign in.");
                 Console.WriteLine("Message: " + codeResult.Message + "\n");
-                result = ctx.AcquireTokenByDeviceCodeAsync(codeResult).Result;
+                result = await ctx.AcquireTokenByDeviceCodeAsync(codeResult);
             }
             catch (Exception exc)
             {
