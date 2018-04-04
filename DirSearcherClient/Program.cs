@@ -1,18 +1,18 @@
-﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace DirSearcherClient
 {
     public class Program
     {
-        //public const string clientId = "04b07795-8ddb-461a-bbee-02f9e1bf7b46";
-        public const string resource = "00000002-0000-0000-c000-000000000000";
-        public const string clientId = "b78054de-7478-45a6-be1c-09f696a91d64";
+        public const string resource = "https://graph.microsoft.com";
+        public const string clientId = "f5b5b9c9-c68b-45c5-8f57-bcf3f2f15f26";
         public static void Main(string[] args)
         {
             string commandString = string.Empty;
@@ -50,15 +50,14 @@ namespace DirSearcherClient
                     case "EXIT":
                         Console.WriteLine("Bye!");
                         return;
-                        break;
                     default:
                         if (commandString.ToUpper().StartsWith("SEARCH") && commandString.Split(' ').Count() > 1)
                         {
                             string[] localArgs = commandString.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                             if (localArgs.Count() > 2)
-                                Search(localArgs[1], localArgs[2]);
+                                Search(localArgs[1], localArgs[2]).Wait();
                             else
-                                Search(localArgs[1], null);
+                                Search(localArgs[1], null).Wait();
                         }
                         else
                         {
@@ -69,19 +68,15 @@ namespace DirSearcherClient
                 }
             }
         }
-        static void Search(string searchterm, string tenant)
+        static async Task Search(string searchterm, string tenant)
         {
-            AuthenticationResult ar = GetToken(tenant);
+            AuthenticationResult ar = await GetToken(tenant);
             if (ar != null)
             {
                 JObject jResult = null;
-
-                string graphResourceUri = "https://graph.windows.net";
-                string graphApiVersion = "2013-11-08";
-
                 try
                 {
-                    string graphRequest = String.Format(CultureInfo.InvariantCulture, "{0}/{1}/users?api-version={2}&$filter=mailNickname eq '{3}'", graphResourceUri, ar.TenantId, graphApiVersion, searchterm);
+                    string graphRequest = $"{resource}/v1.0/users?$filter=mailNickname eq '{searchterm}'";
                     HttpClient client = new HttpClient();
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, graphRequest);
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", ar.AccessToken);
@@ -95,29 +90,33 @@ namespace DirSearcherClient
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error on search");
                     Console.WriteLine(ee.Message);
+                    return;
                 }
 
-                if (jResult["odata.error"] != null || jResult["value"] == null)
+                if (jResult == null || jResult["odata.error"] != null || jResult["value"] == null)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error on search");
                 }
                 Console.ForegroundColor = ConsoleColor.Green;
-                if (jResult.Count == 0)
+                if (jResult != null)
                 {
-                    Console.WriteLine("No user with alias {0} found. (tenantID: {1})", searchterm, ar.TenantId);
-                }
-                else
-                {
-                    Console.WriteLine("Users found.");
-                    foreach (JObject result in jResult["value"])
+                    if (jResult.Count == 0)
                     {
-                        Console.WriteLine("-----");
-                        Console.WriteLine("displayName: {0}", (string)result["displayName"]);
-                        Console.WriteLine("givenName: {0}", (string)result["givenName"]);
-                        Console.WriteLine("surname: {0}", (string)result["surname"]);
-                        Console.WriteLine("userPrincipalName: {0}", (string)result["userPrincipalName"]);
-                        Console.WriteLine("telephoneNumbe: {0}", (string)result["telephoneNumber"] == null ? "Not Listed." : (string)result["telephoneNumber"]);
+                        Console.WriteLine("No user with alias {0} found. (tenantID: {1})", searchterm, ar.TenantId);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Users found.");
+                        foreach (JToken result in jResult["value"])
+                        {
+                            Console.WriteLine("-----");
+                            Console.WriteLine("displayName: {0}", (string)result["displayName"]);
+                            Console.WriteLine("givenName: {0}", (string)result["givenName"]);
+                            Console.WriteLine("surname: {0}", (string)result["surname"]);
+                            Console.WriteLine("userPrincipalName: {0}", (string)result["userPrincipalName"]);
+                            Console.WriteLine("telephoneNumber: {0}", (string)result["telephoneNumber"] ?? "Not Listed.");
+                        }
                     }
                 }
             }
@@ -132,7 +131,7 @@ namespace DirSearcherClient
             AuthenticationContext ctx = new AuthenticationContext("https://login.microsoftonline.com/common");
             var cacheContent = ctx.TokenCache.ReadItems();
             Console.ForegroundColor = ConsoleColor.Green;
-            if (cacheContent.Count() > 0)
+            if (cacheContent.Any())
             {
                 Console.WriteLine("{0,-30} | {1,-15}", "UPN", "TenantId");
                 Console.WriteLine("-----------------------------------------------------------------");
@@ -162,7 +161,7 @@ namespace DirSearcherClient
             Console.WriteLine("");
         }
 
-        static AuthenticationResult GetToken(string tenant)
+        static async Task<AuthenticationResult> GetToken(string tenant)
         {
             AuthenticationContext ctx = null;
             if (tenant != null)
@@ -179,35 +178,37 @@ namespace DirSearcherClient
             AuthenticationResult result = null;
             try
             {
-                result = ctx.AcquireTokenSilentAsync(resource, clientId).Result;
+                result = await ctx.AcquireTokenSilentAsync(resource, clientId);
             }
-            catch (Exception exc)
+            catch (AdalSilentTokenAcquisitionException)
             {
-                var adalEx = exc.InnerException as AdalException;
-                if ((adalEx != null) && (adalEx.ErrorCode == "failed_to_acquire_token_silently"))
-                {
-                    result = GetTokenViaCode(ctx);
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Something went wrong.");
-                    Console.WriteLine("Message: " + exc.InnerException.Message + "\n");
-                }
+                result = await GetTokenViaCode(ctx);
+            }
+            catch (AdalException exc)
+            {
+                PrintError(exc);
             }
             return result;
 
         }
-        static AuthenticationResult GetTokenViaCode(AuthenticationContext ctx)
+
+        private static void PrintError(Exception exc)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Something went wrong.");
+            Console.WriteLine("Message: " + exc.Message + "\n");
+        }
+
+        static async Task<AuthenticationResult> GetTokenViaCode(AuthenticationContext ctx)
         {
             AuthenticationResult result = null;
             try
             {
-                DeviceCodeResult codeResult = ctx.AcquireDeviceCodeAsync(resource, clientId).Result;
+                DeviceCodeResult codeResult = await ctx.AcquireDeviceCodeAsync(resource, clientId);
                 Console.ResetColor();
                 Console.WriteLine("You need to sign in.");
                 Console.WriteLine("Message: " + codeResult.Message + "\n");
-                result = ctx.AcquireTokenByDeviceCodeAsync(codeResult).Result;
+                result = await ctx.AcquireTokenByDeviceCodeAsync(codeResult);
             }
             catch (Exception exc)
             {
