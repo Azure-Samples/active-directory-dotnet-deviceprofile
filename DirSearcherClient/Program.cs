@@ -90,6 +90,7 @@ namespace DirSearcherClient
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error on search");
                     Console.WriteLine(ee.Message);
+                    return;
                 }
 
                 if (jResult == null || jResult["odata.error"] != null || jResult["value"] == null)

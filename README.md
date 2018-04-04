@@ -51,6 +51,26 @@ The code for handling the token acquisition process is simple, as it boils down 
 
 You can find both calls in the sample in the static method `GetTokenViaCode`, from the app root class `Program` in program.cs.
 
+```CSharp
+static async Task<AuthenticationResult> GetTokenViaCode(AuthenticationContext ctx)
+{
+    AuthenticationResult result = null;
+    try
+    {
+        DeviceCodeResult codeResult = await ctx.AcquireDeviceCodeAsync(resource, clientId);
+        Console.WriteLine("You need to sign in.");
+        Console.WriteLine("Message: " + codeResult.Message + "\n");
+        result = await ctx.AcquireTokenByDeviceCodeAsync(codeResult);
+    }
+    catch (Exception exc)
+    {
+        Console.WriteLine("Something went wrong.");
+        Console.WriteLine("Message: " + exc.Message + "\n");
+    }
+    return result;
+}
+```
+
 ## How to run this sample
 
 To run this sample, you'll need:
@@ -65,8 +85,6 @@ To run this sample, you'll need:
 
 ### Step 1: Clone or download this repository
 
-Once you have completed the DNX setup, from your shell or command-line run:
-
 git clone https://github.com/Azure-Samples/active-directory-dotnet-deviceprofile.git
 
 or download and exact the repository .zip file.
@@ -77,7 +95,11 @@ The .NET core [documentation pages](https://www.microsoft.com/net/learn/get-star
 
 ### Step 3: Run the sample
 
-#### On any platform
+#### If you prefer to use Visual Studio
+
+Open the solution in Visual Studio, restore the NuGet packages, select the project, and start it in the debugger.
+
+#### (otherwise) on any platform
 
 Open a terminal and navigate to the project folder (`DirSearcherClient`).
 Restore the packages with the following command:
@@ -91,10 +113,6 @@ Launch the app by entering the following command:
 ```PowerShell
     dotnet run
 ```
-
-### If you want to use Visual Studio
-
-Open the solution in Visual Studio, restore the NuGet packages, select the project, and start it in the debugger.
 
 #### Operating the sample
 
@@ -161,13 +179,13 @@ As a first step you'll need to:
 1. Configure Permissions for your application. To that extent, in the Settings menu, choose the 'Required permissions' section and then,
    click on **Add**, then **Select an API**, and type `Microsoft Graph` in the textbox. Then, click on  **Select Permissions** and select **User.ReadBasic.All**.
 
-### Step 3:  Configure the sample to use your Azure AD tenant
+#### Configure the sample to use your Azure AD tenant
 
 In the steps below, ClientID is the same as Application ID or AppId.
 
 Open the solution in Visual Studio to configure the projects
 
-### Configure the client project
+#### Configure the client project
 
 1. Open the `DirSearcherClient\Program.cs` file
 1. Find the line where `clientId` is set and replace the existing value with the application ID (clientId) of the `active-directory-dotnet-deviceprofile` application copied from the Azure portal.
