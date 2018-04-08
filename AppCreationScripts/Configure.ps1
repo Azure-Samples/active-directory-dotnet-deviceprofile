@@ -68,11 +68,11 @@ Function GetRequiredPermissions([string] $applicationDisplayName, [string] $requ
 Function UpdateLine([string] $line, [string] $value)
 {
     $index = $line.IndexOf(':')
-	$delimiter = ','
+    $delimiter = ','
     if ($index -eq -1)
     {
         $index = $line.IndexOf('=')
-		$delimiter = ';'
+        $delimiter = ';'
     }
     if ($index -ige 0)
     {
@@ -164,9 +164,9 @@ Function ConfigureApplications
    $clientPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_AAD_IAM/ApplicationBlade/appId/"+$clientAadApplication.AppId+"/objectId/"+$clientAadApplication.ObjectId
    Add-Content -Value "<tr><td>client</td><td>$currentAppId</td><td><a href='$clientPortalUrl'>active-directory-dotnet-deviceprofile</a></td></tr>" -Path createdApps.html
 
+   $requiredResourcesAccess = New-Object System.Collections.Generic.List[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]
    # Add Required Resources Access (from 'client' to 'Microsoft Graph')
    Write-Host "Getting access from 'client' to 'Microsoft Graph'"
-   $requiredResourcesAccess = New-Object System.Collections.Generic.List[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]
    $requiredPermissions = GetRequiredPermissions -applicationDisplayName "Microsoft Graph" `
                                                  -requiredDelegatedPermissions "User.ReadBasic.All";
    $requiredResourcesAccess.Add($requiredPermissions)

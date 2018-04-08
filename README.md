@@ -14,7 +14,7 @@ endpoint: AAD V1
 
 ### Overview
 
-This sample demonstrates how to leverage ADAL .NET from apps that **do not have the capability of offering an interactive authentication experience**. It enables this apps to:
+This sample demonstrates how to leverage ADAL .NET from apps that **do not have the capability of offering an interactive authentication experience**. It enables this app to:
 
 - authenticate a user
 - and call to a web API (in this case, the [Microsoft Graph](https://graph.microsoft.com))
@@ -36,9 +36,9 @@ This sample solution is a command-line utility that can be used for looking up b
 
 The application obtains tokens through a two steps process especially designed for devices and operating systems that cannot display any UX. Examples of such applications are applications running on iOT, or Command-Line tools (CLI). The idea is that:
 
-1. whenever a user authentication is required, the command-line app provides a code and asks the user to use another device (such as an internet-connected smartphone) to navigate to http://aka.ms/devicelogin, where the user will be prompted to enter the code. That done, the web page will lead the user through a normal authentication experience, including consent prompts and multi factor authentication if necessary.
+1. whenever a user authentication is required, the command-line app provides a code and asks the user to use another device (such as an internet-connected smartphone) to navigate to [http://aka.ms/devicelogin](http://aka.ms/devicelogin), where the user will be prompted to enter the code. That done, the web page will lead the user through a normal authentication experience, including consent prompts and multi factor authentication if necessary.
 
-![Topology](./ReadmeFiles/deviceCodeFlow.png)
+![UI](./ReadmeFiles/deviceCodeFlow.png)
 
 2. Upon successful authentication, the command-line app will receive the required tokens through a back channel and will use it to perform the web API calls it needs.
 
@@ -85,9 +85,13 @@ To run this sample, you'll need:
 
 ### Step 1: Clone or download this repository
 
+```Shell
 git clone https://github.com/Azure-Samples/active-directory-dotnet-deviceprofile.git
+```
 
 or download and exact the repository .zip file.
+
+> Given that the name of the sample is pretty long, and so are the name of the referenced NuGet pacakges, you might want to clone it in a folder close to the root of your hard drive, to avoid file size limitations on Windows.
 
 ### Step 2: Setup .NET core
 
@@ -137,7 +141,7 @@ The app will respond with the following prompt.
 
 Then:
 
-1. Open a browser on any device. For instance the browser can be on the computer on which you are running the sample, or even your smartphone. Then navigate, as instructed, to [https://aka.ms/devicelogin](https://aka.ms/devicelogin)
+1. Open a browser on any device. For instance, the browser can be on the computer on which you are running the sample, or even your smartphone. Then navigate, as instructed, to [https://aka.ms/devicelogin](https://aka.ms/devicelogin)
 2. Once there, type in the code provided by the app (in this sample, I am typing `B7D3SVXHV`) and hit enter. The web page will proceed to prompt you for authentication: please authenticate as a user (native or guest) in the tenant that you specified in the search command. Note that, thanks to the fact that you are using an external browser or a different, browser capable device, you can authenticate without restrictions: for example, if your tenant requires you to authenticate using MFA, you are able to do so. That experience would not have been possible if you had to drive the authentication operations exclusively in the console.
 3. Once you successfully authenticate, go back to the console app. You'll see that the app has now access to the token it needs to query the Microsoft Graph API. In my case, a mario does exist in my tenant: hence I'll receive the following result.
 
@@ -157,7 +161,17 @@ As a next step, you can search for other users. If you search for users in the s
 ### Optional: configure the sample as an app in your directory tenant
 
 The instructions so far leveraged the Azure AD entry for the app in a Microsoft test tenant: given that the app is multitenant, anybody can run the sample against that app entry.
-Below you'll find instructions to provision the sample in your own tenant, so that you can exercise complete control on the app settings and behavior.
+To register your project in your own Azure AD tenant, you can:
+
+- either use PowerShell scripts that:
+
+  - **automatically** create for you the Azure AD applications and related objects (passwords, permissions, dependencies)
+  - modify the Visual Studio projects' configuration files.
+- or follow the steps in the paragraphs below
+
+If you want to use this automation, read the instructions in [App Creation Scripts](./AppCreationScripts/AppCreationScripts.md)
+
+Below you'll find instructions to manually provision the sample in your own tenant, so that you can exercise complete control on the app settings and behavior.
 
 #### First step: choose the Azure AD tenant where you want to create your applications
 
@@ -196,7 +210,7 @@ Use [Stack Overflow](http://stackoverflow.com/questions/tagged/adal) to get supp
 Ask your questions on Stack Overflow first and browse existing issues to see if someone has asked your question before.
 Make sure that your questions or comments are tagged with [`adal` `dotnet`].
 
-If you find and bug in the sample, please raise the issue on [GitHub Issues](../../issues).
+If you find a bug in the sample, please raise the issue on [GitHub Issues](../../issues).
 
 To provide a recommendation, visit the following [User Voice page](https://feedback.azure.com/forums/169401-azure-active-directory).
 
