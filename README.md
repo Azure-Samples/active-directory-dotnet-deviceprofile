@@ -181,6 +181,9 @@ As a first step you'll need to:
 1. On the top bar, click on your account and under the **Directory** list, choose the Active Directory tenant where you wish to register your application.
 1. Click on **All services** in the left-hand nav, and choose **Azure Active Directory**.
 
+> In the next steps, you might need the tenant name (or directory name) or the tenant ID (or directory ID). These are presented in the **Properties**
+  of the Azure Active Directory window respectively as *Name* and *Directory ID*
+
 #### Register the client app (active-directory-dotnet-deviceprofile)
 
 1. In the  **Azure Active Directory** pane, click on **App registrations** and choose **New application registration**.
@@ -189,7 +192,6 @@ As a first step you'll need to:
 1. Click on **Create** to create the application.
 1. In the succeeding page, Find the *Application ID* value and copy it to the clipboard. You'll need it to configure the Visual Studio configuration file for this project.
 1. Then click on **Settings**, and choose **Properties**.
-1. For the App ID URI, replace the guid in the generated URI 'https://\<your_tenant_name\>/\<guid\>', with the name of your service, for example, 'https://\<your_tenant_name\>/active-directory-dotnet-deviceprofile' (replacing `<your_tenant_name>` with the name of your Azure AD tenant)
 1. Configure Permissions for your application. To that extent, in the Settings menu, choose the 'Required permissions' section and then,
    click on **Add**, then **Select an API**, and type `Microsoft Graph` in the textbox. Then, click on  **Select Permissions** and select **User.ReadBasic.All**.
 
