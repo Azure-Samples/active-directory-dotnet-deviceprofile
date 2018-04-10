@@ -1,6 +1,7 @@
 ---
 services: active-directory
 author: jmprieur
+platforms: dotnet
 level: 200
 client: .NET Core 2 console app
 service: Microsoft Graph
