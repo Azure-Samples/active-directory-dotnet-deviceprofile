@@ -18,9 +18,6 @@ namespace DirSearcherClient
             string commandString = string.Empty;
             Console.ForegroundColor = ConsoleColor.White;
 
-            // You might want to enable logging (by setting this boolean to true)
-            LoggerCallbackHandler.UseDefaultLogging = false;
-
             Console.WriteLine("***********************************************************");
             Console.WriteLine("*             Directory Searcher Text Client              *");
             Console.WriteLine("*                                                         *");
