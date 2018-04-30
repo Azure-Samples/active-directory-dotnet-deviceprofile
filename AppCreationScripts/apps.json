@@ -1,4 +1,11 @@
 {
+  "Sample": {
+    "Title": "Console application calling a web API (in this case, the Microsoft Graph) from apps that do not have the capability of offering an interactive authentication experience.",
+    "Level": 200,
+    "Client": "Desktop (Console)",
+    "Service": "Microsoft Graph"
+  },
+
   /*
     This section describes the Azure AD Applications to configure, and their dependencies
   */
