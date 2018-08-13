@@ -11,8 +11,9 @@ namespace DirSearcherClient
 {
     public class Program
     {
-        public const string resource = "https://graph.microsoft.com";
-        public const string clientId = "f5b5b9c9-c68b-45c5-8f57-bcf3f2f15f26";
+        private const string Resource = "https://graph.microsoft.com";
+        private const string ClientId = "f5b5b9c9-c68b-45c5-8f57-bcf3f2f15f26";
+
         public static void Main(string[] args)
         {
             string commandString = string.Empty;
@@ -67,19 +68,19 @@ namespace DirSearcherClient
         }
         static async Task Search(string searchterm, string tenant)
         {
-            AuthenticationResult ar = await GetToken(tenant);
+            AuthenticationResult ar = await FetchBearerTokenAsync(tenant);
             if (ar != null)
             {
                 JObject jResult = null;
                 try
                 {
-                    string graphRequest = $"{resource}/v1.0/users?$filter=mailNickname eq '{searchterm}'";
+                    string graphRequest = $"{Resource}/v1.0/users?$filter=mailNickname eq '{searchterm}'";
                     HttpClient client = new HttpClient();
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, graphRequest);
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", ar.AccessToken);
-                    HttpResponseMessage response = client.SendAsync(request).Result;
+                    HttpResponseMessage response = await client.SendAsync(request);
 
-                    string content = response.Content.ReadAsStringAsync().Result;
+                    string content = await response.Content.ReadAsStringAsync();
                     jResult = JObject.Parse(content);
                 }
                 catch (Exception ee)
@@ -158,7 +159,27 @@ namespace DirSearcherClient
             Console.WriteLine("");
         }
 
-        static async Task<AuthenticationResult> GetToken(string tenant)
+        static async Task<AuthenticationResult> FetchBearerTokenAsync(string tenant)
+        {
+            AuthenticationContext ctx = CreateAuthenticationContext(tenant);
+            AuthenticationResult result = null;
+            try
+            {
+                result = await ctx.AcquireTokenSilentAsync(Resource, ClientId);
+            }
+            catch (AdalSilentTokenAcquisitionException)
+            {
+                result = await GetTokenViaCode(ctx);
+            }
+            catch (AdalException exc)
+            {
+                PrintError(exc);
+            }
+
+            return result;
+        }
+
+        private static AuthenticationContext CreateAuthenticationContext(string tenant)
         {
             AuthenticationContext ctx = null;
             if (tenant != null)
@@ -172,21 +193,8 @@ namespace DirSearcherClient
                     ctx = new AuthenticationContext("https://login.microsoftonline.com/" + homeTenant);
                 }
             }
-            AuthenticationResult result = null;
-            try
-            {
-                result = await ctx.AcquireTokenSilentAsync(resource, clientId);
-            }
-            catch (AdalSilentTokenAcquisitionException)
-            {
-                result = await GetTokenViaCode(ctx);
-            }
-            catch (AdalException exc)
-            {
-                PrintError(exc);
-            }
-            return result;
 
+            return ctx;
         }
 
         private static void PrintError(Exception exc)
@@ -201,7 +209,7 @@ namespace DirSearcherClient
             AuthenticationResult result = null;
             try
             {
-                DeviceCodeResult codeResult = await ctx.AcquireDeviceCodeAsync(resource, clientId);
+                DeviceCodeResult codeResult = await ctx.AcquireDeviceCodeAsync(Resource, ClientId);
                 Console.ResetColor();
                 Console.WriteLine("You need to sign in.");
                 Console.WriteLine("Message: " + codeResult.Message + "\n");
