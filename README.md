@@ -20,7 +20,7 @@ This sample demonstrates how to leverage ADAL .NET from apps that **do not have 
 - authenticate a user
 - and call to a web API (in this case, the [Microsoft Graph](https://graph.microsoft.com))
 
-The sample uses the OAuth2 **device profile flow** similar to the one described [here](https://developers.google.com/identity/protocols/OAuth2ForDevices?hl=en). The app is built entirely on .NET Core, hence it can be ran as-is on Windows (including Nano Server), OSX, and Linux machines.
+The sample uses the OAuth2 **device profile flow** similar to the one described [here](https://developers.google.com/identity/protocols/OAuth2ForDevices?hl=en). The app is built entirely on .NET Core, hence it can be run as-is on Windows (including Nano Server), OSX, and Linux machines.
 
 To emulate a device not capable of showing UX, the sample is packaged as a console application.
 The application signs users in with Azure Active Directory (Azure AD), using the Active Directory Authentication Library (ADAL) to obtain a JWT access token through the OAuth 2.0 protocol.  The access token is sent to Azure AD's Microsoft Graph API to obtain information about other users in their organization.
