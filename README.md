@@ -158,7 +158,7 @@ Then:
 > givenName: Mario
 > surname: Rossi
 > userPrincipalName: mario@developertenant.onmicrosoft.com
-> telephoneNumbe: Not Listed.
+> telephoneNumber: Not Listed.
 > Enter command (search | clear | printcache | exit | help) >
 >
 ```
